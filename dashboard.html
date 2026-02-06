@@ -9,64 +9,70 @@
 body{
 margin:0;
 font-family:Arial;
-background:#f4f6f9;
-}
-
-.header{
-background:#2a5298;
+background:#1e3c72;
 color:white;
-padding:15px;
-font-size:20px;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
 }
 
 .container{
-padding:20px;
-}
-
-.card{
 background:white;
-padding:20px;
-margin:10px 0;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,0.1);
+color:black;
+padding:30px;
+border-radius:12px;
+text-align:center;
+width:350px;
 }
 
 button{
-padding:10px 15px;
+padding:12px;
+margin-top:15px;
 border:none;
-background:#2a5298;
+background:#1e3c72;
 color:white;
-border-radius:6px;
 cursor:pointer;
+width:100%;
 }
 </style>
 
 </head>
 <body>
 
-<div class="header">
-CloudBot AI Dashboard
-<button onclick="logout()" style="float:right;">Logout</button>
-</div>
-
 <div class="container">
 
-<div class="card">
-<h3>Welcome to CloudBot AI</h3>
-<p>Your AI chatbot system is ready.</p>
-</div>
+<h2>CloudBot AI Dashboard</h2>
 
-<div class="card">
-<h3>Create Chatbot</h3>
-<button onclick="alert('Feature coming next')">Create New Bot</button>
-</div>
+<p id="welcome"></p>
+
+<button onclick="logout()">Logout</button>
 
 </div>
 
 <script>
-function logout(){
-window.location.href="index.html";
+
+// check login
+let user = localStorage.getItem("cloudbot_user");
+
+// if not logged in
+if(user === null){
+window.location.href = "index.html";
 }
+
+// show user
+document.getElementById("welcome").innerText =
+"Welcome: " + user;
+
+// logout function
+function logout(){
+
+localStorage.removeItem("cloudbot_user");
+
+window.location.href = "index.html";
+
+}
+
 </script>
 
 </body>
