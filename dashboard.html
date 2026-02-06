@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CloudBot AI Dashboard</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#f4f6f9;
+}
+
+.header{
+background:#2a5298;
+color:white;
+padding:15px;
+font-size:20px;
+}
+
+.container{
+padding:20px;
+}
+
+.card{
+background:white;
+padding:20px;
+margin:10px 0;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+button{
+padding:10px 15px;
+border:none;
+background:#2a5298;
+color:white;
+border-radius:6px;
+cursor:pointer;
+}
+</style>
+
+</head>
+<body>
+
+<div class="header">
+CloudBot AI Dashboard
+<button onclick="logout()" style="float:right;">Logout</button>
+</div>
+
+<div class="container">
+
+<div class="card">
+<h3>Welcome to CloudBot AI</h3>
+<p>Your AI chatbot system is ready.</p>
+</div>
+
+<div class="card">
+<h3>Create Chatbot</h3>
+<button onclick="alert('Feature coming next')">Create New Bot</button>
+</div>
+
+</div>
+
+<script>
+function logout(){
+window.location.href="index.html";
+}
+</script>
+
+</body>
+</html>
