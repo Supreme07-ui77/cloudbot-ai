@@ -3,14 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CloudBot AI</title>
+<title>CloudBot AI Login</title>
 
 <style>
 body{
 margin:0;
 font-family:Arial;
 background:linear-gradient(135deg,#1e3c72,#2a5298);
-color:white;
 display:flex;
 justify-content:center;
 align-items:center;
@@ -19,42 +18,26 @@ height:100vh;
 
 .container{
 background:white;
-color:black;
 padding:30px;
-border-radius:12px;
-width:350px;
+border-radius:10px;
+width:300px;
 text-align:center;
-box-shadow:0 0 20px rgba(0,0,0,0.3);
-}
-
-h1{
-margin-bottom:10px;
 }
 
 input{
 width:100%;
-padding:12px;
+padding:10px;
 margin:10px 0;
-border-radius:8px;
-border:1px solid #ccc;
 }
 
 button{
 width:100%;
-padding:12px;
-margin-top:10px;
-border:none;
-border-radius:8px;
-background:#2a5298;
+padding:10px;
+background:#1e3c72;
 color:white;
-font-size:16px;
+border:none;
 cursor:pointer;
 }
-
-button:hover{
-background:#1e3c72;
-}
-
 </style>
 
 </head>
@@ -62,28 +45,34 @@ background:#1e3c72;
 
 <div class="container">
 
-<h1>CloudBot AI</h1>
+<h2>CloudBot AI Login</h2>
 
-<p>Login to your dashboard</p>
+<input type="email" id="email" placeholder="Enter Email">
 
-<input type="email" placeholder="Email">
-
-<input type="password" placeholder="Password">
+<input type="password" id="password" placeholder="Enter Password">
 
 <button onclick="login()">Login</button>
-
-<button onclick="register()">Register</button>
 
 </div>
 
 <script>
 
 function login(){
-alert("Login system coming next step");
+
+let email = document.getElementById("email").value;
+let password = document.getElementById("password").value;
+
+if(email=="" || password==""){
+alert("Please enter email and password");
+return;
 }
 
-function register(){
-alert("Registration system coming next step");
+// save user
+localStorage.setItem("cloudbot_user", email);
+
+// redirect
+window.location.href = "dashboard.html";
+
 }
 
 </script>
