@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CloudBot AI</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#1e3c72,#2a5298);
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.container{
+background:white;
+color:black;
+padding:30px;
+border-radius:12px;
+width:350px;
+text-align:center;
+box-shadow:0 0 20px rgba(0,0,0,0.3);
+}
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:8px;
+background:#2a5298;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1e3c72;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>CloudBot AI</h1>
+
+<p>System Ready ✅</p>
+
+<input type="email" placeholder="Email">
+
+<input type="password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
+<button onclick="register()">Register</button>
+
+</div>
+
+<script>
+
+function login(){
+alert("Login working");
+}
+
+function register(){
+alert("Register working");
+}
+
+</script>
+
+</body>
+</html>
