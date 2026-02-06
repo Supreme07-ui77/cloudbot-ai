@@ -9,67 +9,98 @@
 body{
 margin:0;
 font-family:Arial;
-background:#1e3c72;
+background:#0f172a;
 color:white;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
 }
 
-.container{
-background:white;
-color:black;
-padding:30px;
-border-radius:12px;
-text-align:center;
-width:350px;
+.header{
+background:#1e293b;
+padding:15px;
+display:flex;
+justify-content:space-between;
+}
+
+.chat-box{
+padding:20px;
+height:400px;
+overflow:auto;
+}
+
+.input-box{
+position:fixed;
+bottom:0;
+width:100%;
+display:flex;
+}
+
+input{
+flex:1;
+padding:15px;
+border:none;
 }
 
 button{
-padding:12px;
-margin-top:15px;
+padding:15px;
 border:none;
-background:#1e3c72;
+background:#2563eb;
 color:white;
 cursor:pointer;
-width:100%;
 }
 </style>
 
 </head>
 <body>
 
-<div class="container">
+<div class="header">
 
-<h2>CloudBot AI Dashboard</h2>
-
-<p id="welcome"></p>
+<span id="user"></span>
 
 <button onclick="logout()">Logout</button>
 
 </div>
 
+<div class="chat-box" id="chat">
+
+<p>Welcome to CloudBot AI 🚀</p>
+
+</div>
+
+<div class="input-box">
+
+<input id="prompt" placeholder="Ask anything...">
+
+<button onclick="send()">Send</button>
+
+</div>
+
 <script>
 
-// check login
 let user = localStorage.getItem("cloudbot_user");
 
-// if not logged in
-if(user === null){
-window.location.href = "index.html";
+if(!user){
+window.location.href="index.html";
 }
 
-// show user
-document.getElementById("welcome").innerText =
-"Welcome: " + user;
+document.getElementById("user").innerText=user;
 
-// logout function
 function logout(){
-
 localStorage.removeItem("cloudbot_user");
+window.location.href="index.html";
+}
 
-window.location.href = "index.html";
+function send(){
+
+let prompt = document.getElementById("prompt").value;
+
+if(prompt=="") return;
+
+let chat = document.getElementById("chat");
+
+chat.innerHTML += "<p><b>You:</b> "+prompt+"</p>";
+
+chat.innerHTML += "<p><b>AI:</b> This is demo response for: "+prompt+"</p>";
+
+document.getElementById("prompt").value="";
 
 }
 
