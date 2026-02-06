@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CloudBot AI</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#0f172a;
+color:white;
+display:flex;
+flex-direction:column;
+height:100vh;
+}
+
+.header{
+background:#1e293b;
+padding:15px;
+display:flex;
+justify-content:space-between;
+}
+
+.chat-box{
+flex:1;
+padding:20px;
+overflow:auto;
+}
+
+.input-area{
+display:flex;
+padding:10px;
+background:#1e293b;
+}
+
+input{
+flex:1;
+padding:12px;
+border:none;
+border-radius:5px;
+}
+
+button{
+padding:12px;
+background:#2563eb;
+color:white;
+border:none;
+cursor:pointer;
+margin-left:5px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="header">
+<span id="user"></span>
+<button onclick="logout()">Logout</button>
+</div>
+
+<div class="chat-box" id="chatBox">
+<p>CloudBot AI Ready 🚀</p>
+</div>
+
+<div class="input-area">
+<input id="prompt" placeholder="Ask anything...">
+<button onclick="send()">Send</button>
+</div>
+
+<script>
+
+let user = localStorage.getItem("cloudbot_user");
+
+if(!user){
+window.location.href="index.html";
+}
+
+document.getElementById("user").innerText=user;
+
+function logout(){
+localStorage.removeItem("cloudbot_user");
+window.location.href="index.html";
+}
+
+async function send(){
+
+let input = document.getElementById("prompt");
+let text = input.value;
+
+if(text=="") return;
+
+let chatBox = document.getElementById("chatBox");
+
+chatBox.innerHTML += "<p><b>You:</b> "+text+"</p>";
+
+input.value="";
+
+chatBox.innerHTML += "<p id='loading'>CloudBot typing...</p>";
+
+try{
+
+let res = await fetch(
+"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyA1__wXgNCVPHgPBspoygL3YDeZAj3e6Oc",
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+contents:[
+{
+parts:[
+{text:text}
+]
+}
+]
+})
+}
+);
+
+let data = await res.json();
+
+document.getElementById("loading").remove();
+
+let reply="No response";
+
+if(data.candidates && data.candidates.length>0){
+reply = data.candidates[0].content.parts[0].text;
+}
+
+chatBox.innerHTML += "<p><b>CloudBot:</b> "+reply+"</p>";
+
+}catch(err){
+
+document.getElementById("loading").remove();
+
+chatBox.innerHTML += "<p><b>Error:</b> API issue</p>";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
