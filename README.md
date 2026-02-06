@@ -1,2 +1,2 @@
 # cloudbot-ai
-CloudBot AI – a SaaS chatbot platform for websites and WhatsApp, built for small businesses.
+CloudBot AI SaaS platform with modern UI and chatbot system
